@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+    .w3-row-padding img {margin-bottom: 12px}
+    /* Set the width of the sidebar to 120px */
+    .w3-sidebar {width: 120px;background: #222;}
+    /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+    #main {margin-left: 120px}
+    /* Remove margins from "page content" on small screens */
+    @media only screen and (max-width: 600px) {#main {margin-left: 0}}
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+.container {
+  max-width: 1280px;
+  padding: 0 1.5rem;
+  margin: auto;
+  overflow: hidden;
+}
+
+.btn-main,
+.btn-light,
+.btn-dark {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  transition: all 0.5s;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-main {
+  color: #333;
+  background-color: #f96d00;
+}
+
+.btn-light {
+  color: #fff;
+  font-size: 1.1rem;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px dashed #f4f4f4;
+}
+
+.btn-light:hover {
+  background: rgba(249, 109, 0, 0.7) !important;
+}
+
+.btn-dark {
+  color: #f4f4f4;
+  font-size: 18px;
+  background-color: #333;
+}
+
+button[class^="btn-"]:hover,
+a[class^="btn-"]:hover,
+input[class^="btn-"]:hover {
+  background-color: #f96d00;
+}
+
+.bg-main {
+  background: #f96d00;
+  color: #fff;
+}
+
+.bg-dark {
+  background: #333;
+  color: #fff;
+}
+
+.bg-light {
+  background: #f4f4f4;
+  color: #000;
+}
+
+.bg-medium {
+  background: #ccc;
+  color: #000;
+}
+
+.lead {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.py-1 {
+  padding: 1rem 0;
+}
+
+.py-2 {
+  padding: 2rem 0;
+}
+
+.py-3 {
+  padding: 3rem 0;
+}
+
+.py-4 {
+  padding: 4rem 0;
+}
+
+.my-1 {
+  margin: 1rem 0;
+}
+
+.my-2 {
+  margin: 2rem 0;
+}
+
+.my-3 {
+  margin: 3rem 0;
+}
+
+.my-4 {
+  margin: 4rem 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  display: block;
+  padding-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.bottom-line {
+  height: 2px;
+  width: 3rem;
+  background: #f96d00;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.item {
+  position: relative;
+  background: #f96d00;
+  overflow: hidden;
+}
+.item::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background: inherit;
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(2) translateX(-75%) translateY(-75%) rotate(-28deg);
+  transition: transform 3s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.item:hover:after {
+  transform: scale(2) translateX(0) translateY(0) rotate(-28deg);
+}
+.item:hover .item-image {
+  transform: scale(1.2);
+}
+.item:hover .item-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+.item-image {
+  height: auto;
+  transform: translateZ(0);
+  display: block;
+  transition: transform 750ms cubic-bezier(0.2, 1, 0.3, 1);
+}
+.item-image:before {
+  content: "";
+  display: block;
+  padding-top: 75%;
+  overflow: hidden;
+}
+.item-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  line-height: 0;
+}
+.item-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  text-align: center;
+  z-index: 1;
+  color: #fff;
+  transform: translateY(-20%);
+  transition: opacity 500ms cubic-bezier(0.2, 1, 0.3, 1),
+    transform 500ms cubic-bezier(0.2, 1, 0.3, 1);
+  transition-delay: 300ms;
+}
+.item-text-wrap {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.item-text-title {
+  font-size: 2rem;
+  padding: 0 1rem;
+  margin: 5px 0 0 0;
+}
+.item-text-category {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+}
+
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+}
+
+img {
+  width: 100%;
+}
+
+#logo {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  /* bottom: 15px; */
+  background-color: transparent;
+}
+
+#main-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+#main-nav ul {
+  display: flex;
+}
+#main-nav li {
+  padding: 1rem 1.5rem;
+}
+#main-nav a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+  border-bottom: 3px transparent solid;
+  padding-bottom: 0.5rem;
+  transition: border-color 0.5s;
+}
+#main-nav a:hover {
+  border-color: #ccc;
+}
+#main-nav a.current {
+  border-color: #f96d00;
+}
+
+#header-home {
+  background: url("../img/showcase.jpg") no-repeat center right/cover;
+  box-shadow: inset 2200px 0 0 0 rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  color: #fff;
+}
+#header-home .header-content {
+  text-align: center;
+  padding-top: 20%;
+}
+#header-home .header-content h1 {
+  font-size: 4rem;
+  line-height: 1.2;
+ 
+}
+#test-para{
+  color: black;
+ 
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+#header-inner {
+  background: url("../img/showcase.jpg") no-repeat 20% 27% / cover;
+  box-shadow: inset 2200px 0 0 0 rgba(0, 0, 0, 0.5);
+  height: 5.5rem;
+  border-bottom: 3px solid #f96d00;
+}
+
+#home-a .specials {
+  margin-top: 3rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+#home-a .specials .fas {
+  color: #f96d00;
+  padding-bottom: 0.4rem;
+}
+
+#home-b .stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+#home-b .stats li {
+  line-height: 2;
+}
+#home-b .stats li.stats-title {
+  font-size: 1.5rem;
+}
+#home-b .stats li.stats-number {
+  font-size: 2rem;
+  font-weight: bold;
+}
+#home-b .stats div {
+  padding: 3rem 0;
+}
+#home-b .stats div:nth-child(odd) {
+  background: #f4f4f4;
+}
+#home-b .stats div:nth-child(even) {
+  background: #ccc;
+}
+
+#home-c .process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.5rem;
+  text-align: center;
+}
+#home-c .process-step {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28px;
+  background: #f96d00;
+  color: #fff;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  line-height: 15px;
+  padding: 1rem;
+  transition: all 1s;
+}
+#home-c .process-icon {
+  border-radius: 50%;
+  background: #333;
+  color: #fff;
+  padding: 2rem;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  position: relative;
+  transition: all 1s;
+}
+#home-c .process-icon:hover {
+  background: #f96d00;
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+}
+#home-c .process-icon:hover .process-step {
+  background: #333;
+  color: #fff;
+}
+
+#about-a .about-info {
+  display: grid;
+  grid-template-areas: "bioimage bio bio" "aw1 aw2 aw3";
+  grid-gap: 1.2rem;
+}
+
+#about-a .bio-image {
+  grid-area: bioimage;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+#about-a .bio {
+  grid-area: bio;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-left: 3px solid #f96d00;
+  padding: 0.8rem;
+}
+
+#about-a .award-1 {
+  grid-area: aw1;
+}
+
+#about-a .award-2 {
+  grid-area: aw2;
+}
+
+#about-a .award-3 {
+  grid-area: aw3;
+}
+
+#about-a .award-1 .fas,
+#about-a .award-2 .fas,
+#about-a .award-3 .fas {
+  color: #f96d00;
+  margin: 1rem;
+}
+
+#about-b .progress {
+  overflow: hidden;
+  height: 20px;
+  background: #ccc;
+  border-radius: 5px;
+  margin-bottom: 0.6rem;
+}
+#about-b .progress div {
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  background: #f96d00;
+}
+
+#about-c .about-logos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+#about-c .about-logos img {
+  width: 70%;
+}
+
+#about-d .testimonials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0.5rem;
+}
+#about-d .testimonials ul {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+#about-d .testimonials p {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+#about-d .testimonials img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+#contact-a .text-fields {
+  display: grid;
+  grid-template-areas: "name email" "subject phone" "message message";
+  grid-gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+#contact-a .text-fields .name-input {
+  grid-area: name;
+}
+#contact-a .text-fields .subject-input {
+  grid-area: subject;
+}
+#contact-a .text-fields .email-input {
+  grid-area: email;
+}
+#contact-a .text-fields .phone-input {
+  grid-area: phone;
+}
+#contact-a .text-fields .message-input {
+  grid-area: message;
+  height: 100px;
+}
+#contact-a .text-fields .text-input {
+  padding: 0.5rem 1rem;
+}
+
+#contact-a button[type="submit"] {
+  width: 50%;
+}
+
+#contact-b .contact-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
+
+#contact-c h1 {
+  text-align: center;
+  font-size: 4rem;
+}
+
+#main-footer {
+  background: #333;
+  color: #fff;
+  height: 5rem;
+}
+#main-footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  height: 5rem;
+  align-items: center;
+}
+#main-footer .footer-content .social .fab {
+  margin-right: 1rem;
+  border: 2px #fff solid;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  padding: 0.5rem;
+}
+#main-footer .footer-content .social .fab:hover {
+  background: #f96d00;
+}
+
+@media (max-width: 800px) {
+  #header-home {
+    height: 30rem;
+  }
+  #header-home .header-content {
+    padding-top: 5rem;
+  }
+  #header-home .header-content h1 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  #main-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  #main-nav li {
+    padding: 1rem;
+  }
+  #header-home {
+    height: 100vh;
+    border-bottom: 3px solid #f96d00;
+    background-position: 20% 27%;
+  }
+
+  #header-home .header-content {
+    padding-top: 18vh;
+  }
+
+  #header-home .header-content h1 {
+    font-size: 35px;
+  }
+  #header-inner {
+    height: 10rem;
+  }
+  #home-a .specials,
+  #home-b .stats,
+  #home-c .process,
+  #about-d .testimonials,
+  #contact-b .contact-info,
+  .items {
+    grid-template-columns: 1fr;
+  }
+  #home-a .specials div {
+    border-bottom: 1px #f4f4f4 solid;
+    padding-bottom: 1rem;
+  }
+  #home-a .specials div:last-child {
+    border: none;
+    padding-bottom: 0;
+  }
+  #home-b .stats div {
+    padding: 2rem 0 1rem 0;
+  }
+  #about-a .about-info {
+    grid-template-areas: "bioimage" "bio" "aw1" "aw2" "aw3";
+  }
+  #about-c {
+    display: none;
+  }
+  #contact-a .text-fields {
+    grid-template-areas: "name" "subject" "email" "phone" "message";
+  }
+  #contact-b div {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px #555 solid;
+  }
+  #contact-b div:last-child {
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  #contact-c h1 {
+    font-size: 2rem;
+  }
+  #main-footer {
+    height: 7rem;
+  }
+  #main-footer .footer-content {
+    flex-direction: column;
+    padding: 1rem;
+    height: 5rem;
+  }
+}
+
+@media (max-height: 580px) {
+  #header-home .header-content {
+    padding-top: 3rem;
+  }
+}
+
+@media (max-height: 330px) {
+  #header-home .header-content h1 {
+    font-size: 2rem;
+  }
+}
+#header-home{
+  background:url(https://www.w3schools.com/howto/img_parallax.jpg) no-repeat 20% 27% / cover;;
+}
+
+
+    </style>
+  </head>
+<body class="w3-black">
+
+  <header id="header-home">
+    <div class="container">
+      <nav id="main-nav" data-aos="fade-down" data-aos-duration="1000">
+        <img src="photo1-removebg-preview (1).png" alt="My Portfolio" id="logo" />
+        <ul>
+          <li><a href="music.html" class="current">Home</a></li>
+          <li><a href="test1.html">About</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="contect.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-content" data-aos="fade-down" data-aos-duration="1500">
+        <h1>
+          I Am Chirag The
+          <p id="test-para">
+          </p>
+        </h1>
+        <p class="lead">I specialize in Graphic design, UI/UX and Back-end</p>
+        <a href="work.html" class="btn-light">View My Work</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <div class="w3-content w3-justify w3-text-grey w3-padding-64"id="about">
+    <h2 class="w3-text-light-grey">Chirag Jain</h2>
+    <hr style="width:200px" class="w3-opacity">
+    <p>Hi, I'm Chirag jain & I'm from Ajmer, Rajasthan. I have done graduation in Computer Science and Engineering from BTU University. I'm a tech enthusiast who has been interested in new technologies for quite a long time. I have worked in different fields to have different experiences & more knowledge which have been helpful in my professional life. I have built good relations with people with my communication, confidence & humility.
+    </p>
+    <h3 class="w3-padding-16 w3-text-light-grey">My Skills</h3>
+    <p class="w3-wide">Coding</p>
+    <div class="w3-white">
+      <div class="w3-dark-grey" style="height:28px;width:95%"></div>
+    </div>
+    <p class="w3-wide">Web Design</p>
+    <div class="w3-white">
+      <div class="w3-dark-grey" style="height:28px;width:85%"></div>
+    </div>
+    <p class="w3-wide">Games</p>
+    <div class="w3-white">
+      <div class="w3-dark-grey" style="height:28px;width:80%"></div>
+    </div><br>
+    
+    <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">11+</span><br>
+        Partners
+      </div>
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">55+</span><br>
+        Projects Done
+      </div>
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">89+</span><br>
+        Happy Clients
+      </div>
+      <div class="w3-quarter w3-section">
+        <span class="w3-xlarge">150+</span><br>
+        Meetings
+      </div>
+    </div>
+   
+    <button class="w3-button w3-light-grey w3-padding-large w3-section">
+    <a href="ChiragJain_Resume.pdf"><i class="fa fa-download"></i>Download Resume</a>      
+    </button>
+    
+    <!-- Grid for pricing tables -->
+    <h3 class="w3-padding-16 w3-text-light-grey">My Price</h3>
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-half w3-margin-bottom">
+        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
+          <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
+          <li class="w3-padding-16">Web Design</li>
+          <li class="w3-padding-16">Photography</li>
+          <li class="w3-padding-16">5GB Storage</li>
+          <li class="w3-padding-16">Mail Support</li>
+          <li class="w3-padding-16">
+            <h2>$ 10</h2>
+            <span class="w3-opacity">per month</span>
+          </li>
+          <li class="w3-light-grey w3-padding-24">
+            <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="w3-half">
+        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
+          <li class="w3-dark-grey w3-xlarge w3-padding-32">Pro</li>
+          <li class="w3-padding-16">Web Design</li>
+          <li class="w3-padding-16">Photography</li>
+          <li class="w3-padding-16">50GB Storage</li>
+          <li class="w3-padding-16">Endless Support</li>
+          <li class="w3-padding-16">
+            <h2>$ 25</h2>
+            <span class="w3-opacity">per month</span>
+          </li>
+          <li class="w3-light-grey w3-padding-24">
+            <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
+          </li>
+        </ul>
+      </div>
+    <!-- End Grid/Pricing tables -->
+    </div>
+    
+    <!-- Testimonials -->
+    <h3 class="w3-padding-24 w3-text-light-grey">My Reputation</h3>  
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLRpLKdid0DY5Uivty_mg8LuQJlbiGw7eTA&usqp=CAU" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
+    <p><span class="w3-large w3-margin-right">Mobzway Technolodgy.<br></span> Software Developer .</p>
+    <p>Chirag Jain helps to our developer to create fantanstic Games in Unix 2 dimensional or 3 dimensional.</p><br>
+    
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAABhlBMVEX///9WZWn0nCQ7gau0tLTNSiixsbHSTCiwQCW6RCbERye8Qya1QiatPyVaaW38/PzujSLwkiW/v7/QSihXnp9ip5nYTyddbnJFi6hco51lq5VJjqbb29tdpJzrhyX29vZOlKRnrZNvt5BrspFRmKLpeih0vI13g4bu7u5Bh6lPlaSaoqXJycnl5eVJkaZTmqHncCnrgihseX3oeCn/pCbmbSl3wIniYSnjXSnP09XiUyj85cX60Jj61aP1gyrre0aCjZD2xbX1WSllnb7K3ejsfV351cmnx9rf6/Lzt6VSkLX66uWDr8rgXzjsmYDgaUbkjnX66+fZa0+FtMh6rsDaeWD02tTgloTLVDfotanRa1GXwcm41dmBtLzenY6Dt7mEu7DAVz+fysHNe2f+8uH2rEb3uWPI4tv5xHrUlob869PmtpvYciXemDeMw6rHXiW1nlWapWqCroCr1r/Hk0jTezv/sinAh0y+b1yyj1b4woKnll/ulk7wpWN/zo72zrHM6tHqhVTopGiEAAAL0ElEQVR4nO2ai3/TRhLHZUdWEjtoExFiCgKFRy4KtkPimCZyEl53cNAcB6EllFdbHqHAceXKXXvXFEr5zzv7knallePYwbI/tz9jWVrtruarmdldKRiGlpaWlpaWlpaWlpaWlpaWlpaWlkqbXtYW7I8uXR76c9Y27Ie8y82hob9kbcU+6EoTQIaytqJ7XW0SkL9mbUfXukxBhq5lbUiXut5kIF9kbUl32mhykAHP9ysRyEDn+6WmAPK3rK3pQjdEkAHO9783pzDHFAMZ2Hz3mlNUDGRgJ5ObUzGQAc33q80EyGAuHm9MJUCGUNZGdaC7UwqQQQyuKSXI4OX7DTXIwAXX1lQKyIDN72hqWJAIMjRYD/C3hlNBBmp+35hKBxmofL893ALki8EJrqvDrUCGvszavnYlZzpoDqyfIxv6GZT1/N0Yx8G5mAYk3zfjDkmAzA1Gvt8+GFcCZC5rG9vR9eE4RyEJMgj5XigcLGDr6Qd2C4XDXHNzeIP3+j/fbxWSOpzU0azt3E3ecHsghx9kbekuuq3gKHw5eC65flDBsWkcVeirrG1tqaKC42vDeKgi8bM2toXuqAILn5hXkWRtbbo8FccdfObaPNHR+VCw+zBre1M1XITQKpLwKsIvPaCnvppXqF+f37eKSRXu0nPe9Pz0/DzeTNMN/vZpvqMCs10E+ZqffTStUH/O709VDrkXnj4zjT/T02em+d70mTMZmpuqjYIC5H50/sEZhfrRJQqMYmFLqHBa1hmy7b/n90sqkKdijYenFXqUlb1pQqrAKmxIdc7KDPSw34Lrrsohd+U6186ePptUNvamaUvpkHgCPFJwnO2v+f1+qVQqFkvsgzewvRev5U+C4eQ7GXJMTmZhb5q+AcMZCRHmKBWT9b6dVOjb3tubKma/rI1kPU8FMtk/+X5HxVFS1XzQ1y7ZVDpkU1UVgd2f9S3JYxXHY3Xda5+p1Ft70/SNimM07VlDCdIfLlEmyNO02rJLjrHfflhy3R9NqjSWXv+YUr2zN00bCo7R0cRcGMlTgmQ+v6OiiiMl06m+O8R07NihSFk/v99TcZRaOAR0SKXvemNvmlBxjGoUPvQXJDhkdY1VXI/KnihJsp3fn44pNBo+Fz7LN/huvrEatlKCHOmx6ZK2VBxjfOhF2/l8nld9DvvP2P6TI5IAAjZHvu+9/aFGlQ6heUsw8s951Rf4KM/miyNKZZfv95QOeSkYnn/B6642aAGx9nslyJOMMIzNEpg9Qq0fiRwiYOQbr8LaDCS/jQ9+OKFSVsH1dEQlGHrX81yNqHZYhsPNV4KcyIbj6qiKo2Ssbkc2b0fVX0Sl+TXjiRLk35mAPFY65B8CRj6/E1VfE8vzaydOgWBzAn/DTxb5/lKFceD1xIRkb1T/VUMon5j459tTCv3Qew5vTIHxZmJCAmk8E1rIIBPj/1KR9D7f7x8gGoEP+QGNvR4fj4GILbZlkInx8R9PnToJH7IhP/Cv1xxbYyHICNt7Mz4eB3kuNtnJyyTj48ePvz0ZV6/z/fGBmN6AWQmQNbHJuswBIOPHF/+TIOktx8sYxuji4iIGieXIqtjmVTxJsEsWkyg9BZExxmZmlCANuVFD4uAgi+d/PPknUb3Md5ljaSYFJC+3imU7B4HWbyWS3nFsihgLS6kga3KzdYlDAFlaei2C9CzfkYBxbkECkZN9VW63muaRpaWFhZ8ikM97Nb9Hmb4MHASEcMQ9Ik2HhpTtgkdmKMjCuZ8+5+pRcG2OhBjnOIjCI43Gz/GWPzcaMRCaIjME5NzyfzlJb/6/zf8oRmFZBok8AuY+X1tfVbVdXd95js/HQ2sJg5xbXvmFgvzWC44tglFcWU6AgGXbL3bWVncNcbS6tvNiW84RArK8vPIrIelFvlOMFQFk5vz5mXfvd9b3/AIXre+8f7cIrSOQ5ZXmr7+BSz79y2BwSKnZ5CALCx8/vv+g/FNI+9r88P7dx6UFBrKychm88vu+GNvyqqXmFOG4cOFjtwSyvA8fL1zAIM1m85ff97NntbZu3Lxy9ZNe4NbNG9c/5QW0tLS0tLS0tLS0PqFqlXq9bnX4rGRB23plPx607JwdiMe+neOy61VVoVS9Xg7PlOu0qAL7s1HvkpFwLBzN4m5tG2/r3b6RwFe9KBZ4uFsrqFaIhfwULqwEASm0K5Ilth24IGKUAkSyXAKxMLxTQ4bvQrf2rNGV6jl+fRGkxg2ie4ZR5rUu4kLmE49g1XhDMEsFwkp5PyEI7qnM32Q4uKduAswlMVMRSlAIQqzPxUDIXj3aFe63Z9eVIDnhXs+GDSryHTTxYRfvIOu5i5FhcZAAG4piIGZ4j2djd9twfDWIcKMqHMRNBl0sxvcksJrYiKQiCcRTgBAL8ABgO4pOkyC5sJrFra/LnoKxTwzTPasO4V6JdSmD5FJBZuPZpQSZJSGUc9lxwHxIHCLnhB2L8T0JR04Qc3LMI0YMxOKhmHphCaROhxNudCAMCLbcrByP1D2oQiwpC3dMApmV89oIC2fbBymz8GLjU43ZWo9lJmfrcDaxSVBa8q0oc5CaHWVPCFLj00UVXzcwFBJAPAxCBnR2/zlILgkSpHa4q6q0L9FgAYQUu0IhuRqOwyo3NxYcKSCGnwvnVg5ix3Od1rKrRieyc35oZRQkJFbrZVuaopKFewBhJGZrEKNjkBqEJJEjTUbEZtCsKwQsL7xY5YWV1Lk4CUKil4zVLUC8jkHIOsmma7YYSCLnomTnqqVNIyoQOlaDmSJILEfIKsU19i7wt8NUFruNRq2WIG2NWiEIXe7YiIPE1xOsqKPhdzbqqSqGSbsgibmZSwlCScpuToi15CU6WQHDCiP0I0lGPvK1C3IxLdsr0d0OIhCa8DYD8cvCFaPrKkN1F1VEK4R1LmoXRDny0J4FkOgiVZqLjCwRSE7qKNha8CwhGEHGLWp9+yCVRHa6rUAMxxZApFkKy064qD05fDlIhIe+nNUCxFaAkCwRSarROkoFQh9B+O2LLRvruQ5X8WXZsdGTnNc+CFsP+sQcryY+ISpB5PGBLEnYhby0MN1VToy/Eqa7EgSpQVjc88mIPYSlg+D7EZmL6NOpj6rlTqcQcEjsCgjbQq7u4704iAf11Veqhe9XwkYV3hWAlMtSV3JmspEs1znGvgp5eJnjtfm8jeR6yKu5bq3dxlpaWlpa/2dCu76XRvswhSCs3SqZsJS02px2E515FluIomhLC8IuTau9vlvJMkG7PcrsAcQ34yUOs9I0gSGwVCBOJ89SMVkOQp5opMo9KSDJkEGGb4lHWA57KYLw/WK9kJaoXSe3JQvfDMc0Agc2hmtalgnr3xq5rxas9apQ4lAQZGGTXPqHQsdxoCpu7JIaJq5umr5lWiYFME1yHk4xNtf0iHcQPgOVoD+8UyPXB1dCfzWz47/zEBCzagSm48MlqggFcKNCENcKkFdlHglMYh9pB/Z5qGa6UMPxkEtALNeDliwLHMtDgGUgp8qdDEHsk6Ye8qABsqwaRINJQDzcjW92AWKCK+AmUyPJvYOIDUFo+jAQH8cCu5RjUmuNqkW7gS92GM8RUheOUBha2BV4lwYyOJZ6GMHNgM6oo6vdeMR1XZyFJjOH7IYg5FphjoD7eOrS/IQjk9YwaSSGIAExDIFhEQgEo4fD1iLyWY7AvcKhTfr1uwwtg4NQj4ggokdwscmekUKP0J0ESI0cSSBgJab2rQA/ungIWYEheIRasT8gPjazBv2TnQA2AbanxkFweiIO4uL6VbCAEMZBaMf4zoQgcOtdXIdkmYNzBJuNe4QDH9f3rH0CgYCHEYWOY/BLropLwuHXCacc2INiB2GvmDhYGAhMf5S1BmOZhWcNDhKYiE4qHu4aggzBD+xUqXtdXL+LHHHZWO6zAb7K3rTXHBiQPL4DJ8lr+Wi6gxxxHZdVDaIaUY8wopM9l70qI+UeOXId8orD9VG16vEmcGnkuT163rVEkAGWb4Z/ahhskGq0kBpsEHHpql/eaGlpaWlpaWlpaWlpaWlpaWlpaWlp7YP+ANBqAvdLROV6AAAAAElFTkSuQmCC" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
+    <p><span class="w3-large w3-margin-right">Appcino Technolodgy.</span></br> Appian developer.</p>
+    <p>Give Solution which gives more benefits to Client</p>
+  <!-- End About Section -->
+  </div>
+  
+  <!-- Portfolio Section -->
+  <div class="w3-padding-64 w3-content" id="photos">
+    <h2 class="w3-text-light-grey">My Photos</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <!-- Grid for photos -->
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-half">
+        <img src="https://www.w3schools.com/w3images/wedding.jpg" style="width:100%">
+        <img src="https://www.w3schools.com/w3images/rocks.jpg" style="width:100%">
+        <img src="https://www.w3schools.com/w3images/sailboat.jpg" style="width:100%">
+      </div>
+
+      <div class="w3-half">
+        <img src="https://www.w3schools.com/w3images/underwater.jpg" style="width:100%">
+        <img src="https://www.w3schools.com/w3images/chef.jpg" style="width:100%">
+        <img src="https://www.w3schools.com/w3images/wedding.jpg" style="width:100%">
+        <img src="https://www.w3schools.com/w3images/p6.jpg" style="width:100%">
+      </div>
+    <!-- End photo grid -->
+    </div>
+  <!-- End Portfolio Section -->
+  </div>
+
+  <!-- Contact Section -->
+  <div class="w3-padding-64 w3-content w3-text-grey" id="contact">
+    <h2 class="w3-text-light-grey">Contact Me</h2>
+    <hr style="width:200px" class="w3-opacity">
+
+    <div class="w3-section">
+      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Jaipur, India</p>
+      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +917014531129</p>
+      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: jainchirag4343@gmail.com</p>
+    </div><br>
+    <p>Let's get in touch. Send me a message:</p>
+
+    <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
+      <p>
+        <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </p>
+    </form>
+  <!-- End Contact Section -->
+  </div>
+  
+<!-- Footer. This section contains an ad for W3Schools Spaces. You can leave it to support us. -->
+<footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+ 
+ 
+ <!-- End footer -->
+</footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+<script src="script.js"></script>
+
+</body>
+</html>
